@@ -146,7 +146,7 @@ evaluate_model()
   echo "# Evaluate with Coco Metrics"
   echo "#====================================#"
   echo "coco evaluation"
-  python $SCRIPTPREFIX/inference_evaluation/objdet_pycoco_evaluation.py \
+  python $SCRIPTPREFIX/inference_evaluation/eval_pycocotools.py \
   --groundtruth_file="$DATASET/annotations/coco_val_annotations.json" \
   --detection_file="results/$MODELNAME/$HARDWARENAME/coco_detections.json" \
   --output_file="results/performance_$HARDWARENAME.csv" \
@@ -158,7 +158,7 @@ evaluate_model()
   echo "# Merge results to one result table"
   echo "#====================================#"
   echo "merge latency and evaluation metrics"
-  python $SCRIPTPREFIX/inference_evaluation/merge_results.py \
+  python $SCRIPTPREFIX/inference_evaluation/eval_merge_results.py \
   --latency_file="results/latency_$HARDWARENAME.csv" \
   --coco_eval_file="results/performance_$HARDWARENAME.csv" \
   --output_file="results/combined_results_$HARDWARENAME.csv"
@@ -180,7 +180,7 @@ USEREMAIL=alexander.wendt@tuwien.ac.at
 #MODELNAME=tf2oda_efficientdetd0_320_240_coco17_pedestrian_all_LR002
 SCRIPTPREFIX=../../eml-tools
 DATASET=../../../datasets/dataset-oxford-pets-val-debug
-HARDWARENAME=IntelNUC_CPU
+HARDWARENAME=IntelNUC
 # Set this variable true if the network shall be trained, else only inference shall be performed
 TRAINNETWORK=false
 
